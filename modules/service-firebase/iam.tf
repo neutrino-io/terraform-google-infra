@@ -19,6 +19,7 @@ resource "google_project_iam_member" "firebase_update" {
 }
 
 # Write secrets to local file
+#TODO: Create k8s secret instead of local file
 resource "local_file" "firebase_config" {
   content = jsonencode({
     firebase = {
@@ -31,7 +32,7 @@ resource "local_file" "firebase_config" {
       measurementId     = lookup(data.google_firebase_web_app_config.basic, "measurement_id", "")
     }
   })
-  filename = "../../../credentials/app/firebase-config.json"
+  filename = "./credentials/app/firebase-config.json"
 
   depends_on = [
     google_firebase_web_app.basic

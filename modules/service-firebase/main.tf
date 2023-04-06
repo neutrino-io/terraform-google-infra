@@ -8,7 +8,7 @@ data "google_client_openid_userinfo" "gcloud-user" {
 data "google_service_account" "service_account" {
   provider     = google-beta
   project      = data.google_project.default.project_id
-  account_id   = "terraform-admin"
+  account_id   = "provisioner"
 }
 
 # Enable required services on the project
