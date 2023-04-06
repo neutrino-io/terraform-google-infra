@@ -1,2 +1,3 @@
+.idea
 **/*.tfvars
 .DS_Store
