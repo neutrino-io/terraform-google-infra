@@ -6,10 +6,6 @@ variable "project_id" {
   description = "GCP project ID"
 }
 
-variable "project_number" {
-  description = "GCP project number"
-}
-
 variable "region" {
   description = "GCP project region"
 }
@@ -20,10 +16,6 @@ variable "zone_default" {
 
 variable "env" {
   description = "Project environment"
-}
-
-variable "service" {
-  description = "List of services to enable on the project."
 }
 
 variable "gke_services" {

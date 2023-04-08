@@ -55,17 +55,17 @@ data "google_client_config" "current" {
 }
 
 provider "kubernetes" {
-  host  = "https://${module.service_gke.endpoint}"
+  host  = var.enable_service_gke ? "https://${module.service_gke[0].endpoint}" : ""
   token = data.google_client_config.current.access_token
-  cluster_ca_certificate = base64decode(module.service_gke.ca_certificate)
+  cluster_ca_certificate = var.enable_service_gke ? base64decode(module.service_gke[0].ca_certificate) : ""
 }
 
 provider "helm" {
   kubernetes {
-    host                   = "https://${module.service_gke.endpoint}"
+    host                   = var.enable_service_gke ? "https://${module.service_gke[0].endpoint}" : ""
     token                  = data.google_client_config.current.access_token
-    client_certificate     = base64decode(module.service_gke.master_auth.0.client_certificate)
-    client_key             = base64decode(module.service_gke.master_auth.0.client_key)
-    cluster_ca_certificate = base64decode(module.service_gke.master_auth.0.cluster_ca_certificate)
+    client_certificate     = var.enable_service_gke ? base64decode(module.service_gke[0].master_auth.0.client_certificate) : ""
+    client_key             = var.enable_service_gke ? base64decode(module.service_gke[0].master_auth.0.client_key) : ""
+    cluster_ca_certificate = var.enable_service_gke ? base64decode(module.service_gke[0].master_auth.0.cluster_ca_certificate) : ""
   }
 }

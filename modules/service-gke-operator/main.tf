@@ -13,15 +13,15 @@ module "operator-traefik" {
 }
 
 // Operator Rook
-# module "operator-rook" {
-#   source = "./operator-rook"
+ module "operator-rook" {
+   source = "./operator-rook"
 
-#   app_org_id = var.app_org_id
-# }
+   app_org_id = var.app_org_id
+ }
 
 // Operator Flink
-# module "operator-flink" {
-#   source = "./operator-flink"
+ module "operator-flink" {
+   source = "./operator-flink"
 
-#   app_org_id = var.app_org_id
-# }
+   app_org_id = var.app_org_id
+ }

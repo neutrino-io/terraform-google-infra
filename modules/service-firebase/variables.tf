@@ -1,9 +1,13 @@
+variable "app_org_id" {
+    description = "Organisation name"
+}
+
 variable "project_id" {
     description = "GCP project ID"
 }
 
-variable "project_number" {
-    description = "GCP project number"
+variable "env" {
+    description = "GCP Project environment"
 }
 
 variable "region" {

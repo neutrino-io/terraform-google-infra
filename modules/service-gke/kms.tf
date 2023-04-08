@@ -12,5 +12,5 @@ resource "google_kms_crypto_key" "kubernetes-secrets" {
 resource "google_kms_crypto_key_iam_member" "kubernetes-secrets-gke" {
   crypto_key_id = google_kms_crypto_key.kubernetes-secrets.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  member        = "serviceAccount:service-${var.project_number}@container-engine-robot.iam.gserviceaccount.com"
+  member        = "serviceAccount:service-${data.google_project.project.number}@container-engine-robot.iam.gserviceaccount.com"
 }

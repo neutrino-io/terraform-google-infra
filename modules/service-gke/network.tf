@@ -20,8 +20,6 @@ resource "google_compute_subnetwork" "cluster_core_subnet" {
 resource "google_compute_address" "cluster_core_address" {
   name   = format("%s", "${var.org_id}-cluster-core-nat-${var.env}")
   region = var.region
-
-  depends_on = [var.service]
 }
 
 resource "google_compute_router" "cluster_core_router" {

@@ -32,7 +32,7 @@ resource "google_firebase_project" "default" {
 resource "google_firebase_project_location" "basic" {
   provider = google-beta
   project = data.google_project.default.project_id
-  location_id = "asia-southeast1"
+  location_id = var.region
 
   depends_on = [google_project_service.firebase_services]
 }

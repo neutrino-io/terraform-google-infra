@@ -6,6 +6,7 @@
 ## Pre Requisite
 
 - Complete setup of Google Foundation module
+- Running post foundation setup script `PROJECT_ID=neutrino-develop-g1-f1f1f ACCOUNT_EMAIL=support@neutrino.sh IAP_SUPPORT_EMAIL=gcp-devops@neutrino.sh ./foundation-post.sh`
 
 ### Post Installation
 
