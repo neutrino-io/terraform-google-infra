@@ -7,6 +7,7 @@
 
 - Complete setup of Google Foundation module
 - Running post foundation setup script `PROJECT_ID=neutrino-develop-g1-f1f1f ACCOUNT_EMAIL=support@neutrino.sh IAP_SUPPORT_EMAIL=gcp-devops@neutrino.sh ./foundation-post.sh`
+- Manually enable the Identity Platform API in the GCP console at https://console.cloud.google.com/customer-identity
 
 ### Post Installation
 

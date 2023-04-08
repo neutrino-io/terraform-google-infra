@@ -1,20 +1,26 @@
+locals {
+  name                     = "strimzi"
+  strimzi_operator_version = var.strimzi_operator_version != "" ? var.strimzi_operator_version : "0.33.2"
+  operator_namespace       = "system-strimzi"
+}
+
 resource "kubernetes_namespace" "system_strimzi" {
   metadata {
     labels = {
       app    = var.app_org_id
-      system = "strimzi"
+      system = local.name
     }
 
-    name = "system-strimzi"
+    name = local.operator_namespace
   }
 }
 
 resource "helm_release" "strimzi_operator" {
-  name       = "strimzi-operator"
-  namespace  = "system-strimzi"
+  name       = "${local.name}-operator"
+  namespace  = local.operator_namespace
   repository = "https://strimzi.io/charts"
   chart      = "strimzi-kafka-operator"
-  version    = "0.33.2"
+  version    = local.strimzi_operator_version
 
   set {
     name  = "watchAnyNamespace"
@@ -28,7 +34,7 @@ resource "helm_release" "strimzi_operator" {
 
 resource "helm_release" "strimzi_registry_operator" {
   name       = "strimzi-registry-operator"
-  namespace  = "system-strimzi"
+  namespace  = local.operator_namespace
   repository = "https://lsst-sqre.github.io/charts"
   chart      = "strimzi-registry-operator"
 
@@ -39,12 +45,12 @@ resource "helm_release" "strimzi_registry_operator" {
 
   set {
     name  = "clusterNamespace"
-    value = "system-strimzi"
+    value = local.operator_namespace
   }
 
   set {
     name  = "operatorNamespace"
-    value = "system-strimzi"
+    value = local.operator_namespace
   }
 
   depends_on = [

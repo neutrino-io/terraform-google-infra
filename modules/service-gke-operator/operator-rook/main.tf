@@ -1,20 +1,26 @@
+locals {
+  name                  = "rook`"
+  rook_operator_version = var.rook_operator_version != "" ? var.rook_operator_version : "v1.9.3"
+  operator_namespace    = "system-rook"
+}
+
 resource "kubernetes_namespace" "system_rook" {
   metadata {
     labels = {
-        app = var.app_org_id
-        system = "rook"
+      app    = var.app_org_id
+      system = local.name
     }
 
-    name = "system-rook"
+    name = local.operator_namespace
   }
 }
 
 resource "helm_release" "rook_operator" {
-  name       = "rook-operator"
-  namespace  = "system-rook"
+  name       = "${local.name}-operator"
+  namespace  = local.operator_namespace
   repository = "https://charts.rook.io/release"
   chart      = "rook-ceph"
-  version    = "v1.9.3"
+  version    = local.rook_operator_version
 
   depends_on = [
     kubernetes_namespace.system_rook

@@ -44,8 +44,8 @@ variable "project_services" {
     "logging.googleapis.com",
     "monitoring.googleapis.com",
     "dns.googleapis.com",
+    "appengine.googleapis.com",
     "container.googleapis.com",
-    "appengine.googleapis.com"
   ]
   description = "List of services to enable on the project."
 }

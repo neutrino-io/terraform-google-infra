@@ -3,4 +3,8 @@ resource "google_artifact_registry_repository" "general_repo" {
   repository_id = var.org_id
   description   = "${var.org_id} repository"
   format        = "DOCKER"
+
+  depends_on = [
+    google_project_service.gke_service
+  ]
 }

@@ -1,3 +1,9 @@
+locals {
+  name                     = "traefik"
+  traefik_operator_version = var.traefik_operator_version != "" ? var.traefik_operator_version : "10.23.0"
+  operator_namespace       = "system-traefik"
+}
+
 resource "kubernetes_namespace" "system_traefik" {
   metadata {
     labels = {
@@ -5,7 +11,7 @@ resource "kubernetes_namespace" "system_traefik" {
         system = "traefik"
     }
 
-    name = "system-traefik"
+    name = local.operator_namespace
   }
 }
 
@@ -18,11 +24,11 @@ locals {
 }
 
 resource "helm_release" "traefik" {
-  name       = "traefik"
-  namespace  = "system-traefik"
+  name       = "${local.name}-operator"
+  namespace  = local.operator_namespace
   repository = "https://helm.traefik.io/traefik"
   chart      = "traefik"
-  version    = "10.23.0"
+  version    = local.traefik_operator_version
   
   set {
     name  = "providers.kubernetesCRD.enabled"
