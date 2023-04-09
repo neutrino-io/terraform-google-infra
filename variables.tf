@@ -48,3 +48,13 @@ variable "enable_service_firebase" {
   description = "Enable Firebase service"
   default     = false
 }
+
+variable "service_gke_operators" {
+  description = "GKE Operators configurations"
+  default = [
+    {
+      name      = "traefik"
+      enabled   = true
+    }
+  ]
+}

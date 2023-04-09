@@ -1,7 +1,7 @@
 locals {
-  name                     = "strimzi"
-  strimzi_operator_version = var.strimzi_operator_version != "" ? var.strimzi_operator_version : "0.33.2"
-  operator_namespace       = "system-strimzi"
+  name               = "strimzi"
+  operator_version   = var.operator_version != null ? var.operator_version : "0.33.2"
+  operator_namespace = var.operator_namespace != null ? var.operator_namespace : "neutrino-strimzi"
 }
 
 resource "kubernetes_namespace" "system_strimzi" {
@@ -20,11 +20,20 @@ resource "helm_release" "strimzi_operator" {
   namespace  = local.operator_namespace
   repository = "https://strimzi.io/charts"
   chart      = "strimzi-kafka-operator"
-  version    = local.strimzi_operator_version
+  version    = local.operator_version
 
   set {
     name  = "watchAnyNamespace"
     value = true
+  }
+
+  dynamic "set" {
+    for_each = var.operator_settings == null ? {} : var.operator_settings
+
+    content {
+      name  = set.key
+      value = set.value
+    }
   }
 
   depends_on = [

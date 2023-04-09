@@ -11,7 +11,7 @@ resource "kubernetes_cluster_role_binding" "strimzi_clusterrole_topic" {
   subject {
     kind      = "ServiceAccount"
     name      = "strimzi-cluster-operator"
-    namespace = local.strimzi_operator_version
+    namespace = local.operator_namespace
   }
 
   depends_on = [
@@ -32,7 +32,7 @@ resource "kubernetes_cluster_role_binding" "strimzi_clusterrole_user" {
   subject {
     kind      = "ServiceAccount"
     name      = "strimzi-cluster-operator"
-    namespace = local.strimzi_operator_version
+    namespace = local.operator_namespace
   }
 
   depends_on = [

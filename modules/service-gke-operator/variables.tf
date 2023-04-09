@@ -36,8 +36,20 @@ variable "enable_operator_strimzi" {
   default     = false
 }
 
-# Operator Traefik
-variable "enable_operator_traefik" {
-  description = "Enable operator traefik"
-  default     = false
+variable "gke_operators" {
+  description = "Enable operators and its setting"
+  type        = list(object({
+    name      = string
+    enabled   = bool
+    version   = optional(string)
+    namespace = optional(string)
+    settings  = optional(map(string))
+  }))
+
+  default = [
+    {
+      name      = "traefik"
+      enabled   = true
+    }
+  ]
 }

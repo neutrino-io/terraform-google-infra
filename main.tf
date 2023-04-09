@@ -35,7 +35,7 @@ module "service_gke_operator" {
   gke_endpoint = module.service_gke[0].endpoint
   gke_cluster_ca = module.service_gke[0].ca_certificate
   gke_master_auth = module.service_gke[0].master_auth
-  enable_operator_traefik = true
+  gke_operators = var.service_gke_operators
 
   depends_on = [
     module.service_gke
