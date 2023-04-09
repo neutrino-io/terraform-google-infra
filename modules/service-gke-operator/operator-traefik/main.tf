@@ -18,7 +18,7 @@ resource "kubernetes_namespace" "system_traefik" {
 resource "helm_release" "traefik" {
   name       = "${local.name}-operator"
   namespace  = local.operator_namespace
-  repository = "https://helm.traefik.io/traefik"
+  repository = "https://traefik.github.io/charts"
   chart      = "traefik"
   version    = local.operator_version
 
