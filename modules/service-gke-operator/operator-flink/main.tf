@@ -1,7 +1,7 @@
 locals {
   name               = "flink"
-  operator_version   = var.operator_version != null ? var.operator_version : "1.3.1"
-  operator_namespace = var.operator_namespace != null ? var.operator_namespace : "neutrino-flink"
+  operator_version   = tostring(var.operator_version) != "" ? var.operator_version : "1.3.1"
+  operator_namespace = tostring(var.operator_namespace) != "" ? var.operator_namespace : "neutrino-flink"
 }
 
 resource "kubernetes_namespace" "system_flink" {

@@ -1,7 +1,7 @@
 locals {
   name               = "traefik"
-  operator_version   = var.operator_version != null ? var.operator_version : "22.1.0"
-  operator_namespace = var.operator_namespace != null ? var.operator_namespace : "neutrino-traefik"
+  operator_version   = var.operator_version == null ? "22.1.0" : var.operator_version
+  operator_namespace = var.operator_namespace == null ? "neutrino-traefik" : var.operator_namespace
 }
 
 resource "kubernetes_namespace" "system_traefik" {

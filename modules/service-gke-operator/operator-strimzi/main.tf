@@ -1,7 +1,7 @@
 locals {
   name               = "strimzi"
-  operator_version   = var.operator_version != null ? var.operator_version : "0.33.2"
-  operator_namespace = var.operator_namespace != null ? var.operator_namespace : "neutrino-strimzi"
+  operator_version   = tostring(var.operator_version) != null ? var.operator_version : "0.33.2"
+  operator_namespace = tostring(var.operator_namespace) != null ? var.operator_namespace : "neutrino-strimzi"
 }
 
 resource "kubernetes_namespace" "system_strimzi" {
@@ -42,6 +42,8 @@ resource "helm_release" "strimzi_operator" {
 }
 
 resource "helm_release" "strimzi_registry_operator" {
+  count      = var.enable_registry_operator ? 1 : 0
+
   name       = "strimzi-registry-operator"
   namespace  = local.operator_namespace
   repository = "https://lsst-sqre.github.io/charts"
