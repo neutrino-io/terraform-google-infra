@@ -6,7 +6,7 @@
 ## Pre Requisite
 
 - Complete setup of Google Foundation module
-- Running post foundation setup script `PROJECT_ID=neutrino-develop-g1-f1f1f ACCOUNT_EMAIL=support@neutrino.sh IAP_SUPPORT_EMAIL=gcp-devops@neutrino.sh ./foundation-post.sh`
+- Running post foundation setup script `PROJECT_ID=neutrino-develop-g1-f1f1f ACCOUNT_EMAIL=user@neutrino.sh IAP_SUPPORT_EMAIL=support@neutrino.sh APP_ORG_LABEL="Neutrino" ./foundation-post.sh`
 - Manually enable the Identity Platform API in the GCP console at https://console.cloud.google.com/customer-identity
 
 ### Post Installation
@@ -31,8 +31,7 @@ a version number bump.
 ## Who maintains this Module?
 
 This Module and its Submodules are maintained by [Nematix](https://nematix.com/). If you are looking for help or
-commercial support, send an email to
-[support@nematix.com](mailto:support@nematix.com?Subject=Terraform%20Modules).
+commercial support, email [support@nematix.com](mailto:support@nematix.com?Subject=Terraform%20Modules).
 
 Nematix can help with:
 

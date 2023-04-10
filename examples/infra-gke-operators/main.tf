@@ -19,10 +19,6 @@ module "google-infra-gke" {
       version  = "10.23.0"
       settings = {
         "additionalArguments"             = "{--entryPoints.kafka-broker.address=:19091/tcp}"
-        "ports.kafka-broker1.expose"      = "true"
-        "ports.kafka-broker1.port"        = "19091"
-        "ports.kafka-broker1.exposedPort" = "19091"
-        "ports.kafka-broker1.protocol"    = "TCP"
         "ports.kafka-broker2.expose"      = "true"
         "ports.kafka-broker2.port"        = "19092"
         "ports.kafka-broker2.exposedPort" = "19092"
