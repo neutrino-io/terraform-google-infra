@@ -18,6 +18,7 @@ module "clusters" {
   enable_private_endpoint    = false
   enable_private_nodes       = true
   master_ipv4_cidr_block     = var.k8s_master_ipv4_cidr
+  add_master_webhook_firewall_rules = true
   database_encryption = [{
     state    = "ENCRYPTED"
     key_name = google_kms_crypto_key.kubernetes-secrets.id
@@ -28,6 +29,11 @@ module "clusters" {
       cidr_block   = "0.0.0.0/0"
       display_name = "VPC"
     },
+  ]
+
+  firewall_inbound_ports = [
+    "8443",
+    "9443"
   ]
 
   node_pools = [

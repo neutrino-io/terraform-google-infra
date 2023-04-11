@@ -11,10 +11,9 @@
 
 ### Post Deployment
 
-- Manually add 8443 port rule in `gke-<project>-cluster-core-<env>-<sha>-master` [1]
 - Manually add NS record of subdomain to parent domain
-- Run kubectl create clusterrolebinding deployment-controller --clusterrole=cluster-admin --serviceaccount=kube-system:deployment-controller
-- Run kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep deployment-controller | awk '{print $1}')
+- Run `kubectl create clusterrolebinding deployment-controller --clusterrole=cluster-admin --serviceaccount=kube-system:deployment-controller`
+- Run `kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep deployment-controller | awk '{print $1}')`
 
 ## What's a Module?
 
