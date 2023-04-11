@@ -29,6 +29,20 @@ module "operator-strimzi" {
   operator_settings  = local.operator_strimzi[0]["settings"]
 }
 
+// Operator CloudNativePG
+locals {
+  operator_cloudnativepg         = [for operator in var.gke_operators : operator if operator.name == "cloudnativepg"]
+  operator_cloudnativepg_enabled = length(local.operator_cloudnativepg) > 0 ? local.operator_cloudnativepg[0]["enabled"] : false
+}
+module "operator-cloudnativepg" {
+  count = local.operator_cloudnativepg_enabled ? 1 : 0
+
+  source             = "./operator-cloudnativepg"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_cloudnativepg[0]["version"]
+  operator_namespace = local.operator_cloudnativepg[0]["namespace"]
+  operator_settings  = local.operator_cloudnativepg[0]["settings"]
+}
 
 // Operator Rook
 locals {
@@ -38,8 +52,11 @@ locals {
 module "operator-rook" {
   count = local.operator_rook_enabled ? 1 : 0
 
-  source     = "./operator-rook"
-  app_org_id = var.app_org_id
+  source             = "./operator-rook"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_rook[0]["version"]
+  operator_namespace = local.operator_rook[0]["namespace"]
+  operator_settings  = local.operator_rook[0]["settings"]
 }
 
 
@@ -51,6 +68,9 @@ locals {
 module "operator-flink" {
   count = local.operator_flink_enabled ? 1 : 0
 
-  source     = "./operator-flink"
-  app_org_id = var.app_org_id
+  source             = "./operator-flink"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_flink[0]["version"]
+  operator_namespace = local.operator_flink[0]["namespace"]
+  operator_settings  = local.operator_flink[0]["settings"]
 }
