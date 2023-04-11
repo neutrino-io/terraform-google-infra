@@ -1,6 +1,6 @@
 locals {
   name               = "strimzi"
-  operator_version   = tostring(var.operator_version) != null ? var.operator_version : "0.33.2"
+  operator_version   = tostring(var.operator_version) != null ? var.operator_version : "0.34.0"
   operator_namespace = tostring(var.operator_namespace) != null ? var.operator_namespace : "neutrino-strimzi"
 }
 

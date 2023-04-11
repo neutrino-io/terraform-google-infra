@@ -9,7 +9,7 @@
 - Running post foundation setup script `PROJECT_ID=neutrino-develop-g1-f1f1f ACCOUNT_EMAIL=user@neutrino.sh IAP_SUPPORT_EMAIL=support@neutrino.sh APP_ORG_LABEL="Neutrino" ./foundation-post.sh`
 - Manually enable the Identity Platform API in the GCP console at https://console.cloud.google.com/customer-identity
 
-### Post Installation
+### Post Deployment
 
 - Manually add 8443 port rule in `gke-<project>-cluster-core-<env>-<sha>-master` [1]
 - Manually add NS record of subdomain to parent domain
