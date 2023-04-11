@@ -33,7 +33,8 @@ module "clusters" {
 
   firewall_inbound_ports = [
     "8443",
-    "9443"
+    "9443",
+    "4000"
   ]
 
   node_pools = [

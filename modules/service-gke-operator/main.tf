@@ -74,3 +74,18 @@ module "operator-flink" {
   operator_namespace = local.operator_flink[0]["namespace"]
   operator_settings  = local.operator_flink[0]["settings"]
 }
+
+// Operator Dapr
+locals {
+  operator_dapr         = [for operator in var.gke_operators : operator if operator.name == "dapr"]
+  operator_dapr_enabled = length(local.operator_dapr) > 0 ? local.operator_dapr[0]["enabled"] : false
+}
+module "operator-dapr" {
+  count = local.operator_dapr_enabled ? 1 : 0
+
+  source             = "./operator-dapr"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_dapr[0]["version"]
+  operator_namespace = local.operator_dapr[0]["namespace"]
+  operator_settings  = local.operator_dapr[0]["settings"]
+}
