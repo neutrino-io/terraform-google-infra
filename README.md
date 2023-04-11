@@ -39,7 +39,6 @@ Nematix can help with:
   integration.
 - Consulting & Training on AWS, Terraform, and DevOps.
 
-
 ## How is this Module versioned?
 
 This Module follows the principles of [Semantic Versioning](http://semver.org/).
@@ -47,9 +46,6 @@ This Module follows the principles of [Semantic Versioning](http://semver.org/).
 During initial development, the major version will be 0 (e.g., `0.x.y`), which indicates the code does not yet have a
 stable API. Once we hit `1.0.0`, we will make every effort to maintain a backwards compatible API and use the MAJOR,
 MINOR, and PATCH versions on each release to indicate any incompatibilities.
-
-## References
-[1] https://stackoverflow.com/questions/70585521/clean-ambassador-edge-stack-install-on-gke-fails-with-dns-resolving
 
 ## License
 
