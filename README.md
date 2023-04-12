@@ -15,6 +15,39 @@
 - Run `kubectl create clusterrolebinding deployment-controller --clusterrole=cluster-admin --serviceaccount=kube-system:deployment-controller`
 - Run `kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep deployment-controller | awk '{print $1}')`
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_google.impersonated"></a> [google.impersonated](#provider\_google.impersonated) | 4.61.0 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_app_domain"></a> [app\_domain](#input\_app\_domain) | Application domain | `any` | n/a | yes |
+| <a name="input_app_org_id"></a> [app\_org\_id](#input\_app\_org\_id) | Application organization ID | `any` | n/a | yes |
+| <a name="input_client_id"></a> [client\_id](#input\_client\_id) | GCP client ID | `any` | n/a | yes |
+| <a name="input_client_secret"></a> [client\_secret](#input\_client\_secret) | GCP client secret | `any` | n/a | yes |
+| <a name="input_enable_service_firebase"></a> [enable\_service\_firebase](#input\_enable\_service\_firebase) | Enable Firebase service | `bool` | `false` | no |
+| <a name="input_enable_service_gke"></a> [enable\_service\_gke](#input\_enable\_service\_gke) | Enable GKE service | `bool` | `false` | no |
+| <a name="input_enable_service_gke_operator"></a> [enable\_service\_gke\_operator](#input\_enable\_service\_gke\_operator) | Enable GKE Operator service | `bool` | `false` | no |
+| <a name="input_env"></a> [env](#input\_env) | Project environment | `any` | n/a | yes |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `any` | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region) | GCP project region | `any` | n/a | yes |
+| <a name="input_service_gke_operators"></a> [service\_gke\_operators](#input\_service\_gke\_operators) | GKE Operators configurations | `list` | <pre>[<br>  {<br>    "enabled": true,<br>    "name": "traefik"<br>  }<br>]</pre> | no |
+| <a name="input_zone_default"></a> [zone\_default](#input\_zone\_default) | GCP project default zone | `any` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_kms_key_ring_common"></a> [kms\_key\_ring\_common](#output\_kms\_key\_ring\_common) | n/a |
+| <a name="output_service"></a> [service](#output\_service) | n/a |
+| <a name="output_vpc"></a> [vpc](#output\_vpc) | n/a |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## What's a Module?
 
 A Module is a canonical, reusable, best-practices definition for how to run a single piece of infrastructure, such

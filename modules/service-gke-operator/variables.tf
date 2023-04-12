@@ -20,7 +20,7 @@ variable "gke_master_auth" {
 
 variable "gke_operators" {
   description = "Enable operators and its setting"
-  type        = list(object({
+  type = list(object({
     name      = string
     enabled   = bool
     version   = optional(string)
@@ -30,8 +30,8 @@ variable "gke_operators" {
 
   default = [
     {
-      name      = "traefik"
-      enabled   = true
+      name    = "traefik"
+      enabled = true
     }
   ]
 }

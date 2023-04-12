@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     kubectl = {
-      source = "gavinbunney/kubectl"
+      source  = "gavinbunney/kubectl"
       version = "1.13.0"
     }
 
@@ -29,25 +29,25 @@ data "google_service_account_access_token" "default" {
   provider = google.impersonated
   # Below is the Service Account that we will impersonate
   target_service_account = "provisioner@${var.project_id}.iam.gserviceaccount.com"
-  scopes = ["userinfo-email", "cloud-platform"]
-  lifetime = "3600s"
+  scopes                 = ["userinfo-email", "cloud-platform"]
+  lifetime               = "3600s"
 }
 
 provider "google" {
-  project = var.project_id
-  region  = var.region
-  zone    = var.zone_default
-  billing_project = var.project_id
+  project               = var.project_id
+  region                = var.region
+  zone                  = var.zone_default
+  billing_project       = var.project_id
   user_project_override = true
-  access_token = data.google_service_account_access_token.default.access_token
+  access_token          = data.google_service_account_access_token.default.access_token
 }
 
 provider "google-beta" {
-  project = var.project_id
-  region  = var.region
-  zone    = var.zone_default
+  project         = var.project_id
+  region          = var.region
+  zone            = var.zone_default
   billing_project = var.project_id
-  access_token = data.google_service_account_access_token.default.access_token
+  access_token    = data.google_service_account_access_token.default.access_token
 }
 
 data "google_client_config" "current" {
@@ -55,8 +55,8 @@ data "google_client_config" "current" {
 }
 
 provider "kubernetes" {
-  host  = var.enable_service_gke ? "https://${module.service_gke[0].endpoint}" : ""
-  token = data.google_client_config.current.access_token
+  host                   = var.enable_service_gke ? "https://${module.service_gke[0].endpoint}" : ""
+  token                  = data.google_client_config.current.access_token
   cluster_ca_certificate = var.enable_service_gke ? base64decode(module.service_gke[0].ca_certificate) : ""
 }
 

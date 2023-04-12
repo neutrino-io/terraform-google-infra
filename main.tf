@@ -29,13 +29,13 @@ module "service_gke" {
 module "service_gke_operator" {
   count = var.enable_service_gke && var.enable_service_gke_operator ? 1 : 0
 
-  source     = "./modules/service-gke-operator"
-  app_org_id = var.app_org_id
+  source              = "./modules/service-gke-operator"
+  app_org_id          = var.app_org_id
   google_access_token = data.google_client_config.current.access_token
-  gke_endpoint = module.service_gke[0].endpoint
-  gke_cluster_ca = module.service_gke[0].ca_certificate
-  gke_master_auth = module.service_gke[0].master_auth
-  gke_operators = var.service_gke_operators
+  gke_endpoint        = module.service_gke[0].endpoint
+  gke_cluster_ca      = module.service_gke[0].ca_certificate
+  gke_master_auth     = module.service_gke[0].master_auth
+  gke_operators       = var.service_gke_operators
 
   depends_on = [
     module.service_gke

@@ -53,8 +53,8 @@ variable "service_gke_operators" {
   description = "GKE Operators configurations"
   default = [
     {
-      name      = "traefik"
-      enabled   = true
+      name    = "traefik"
+      enabled = true
     }
   ]
 }

@@ -23,5 +23,5 @@ resource "google_kms_key_ring" "common" {
 }
 
 output "kms_key_ring_common" {
-    value = google_kms_key_ring.common
+  value = google_kms_key_ring.common
 }

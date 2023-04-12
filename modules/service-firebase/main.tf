@@ -6,9 +6,9 @@ data "google_client_openid_userinfo" "gcloud-user" {
 }
 
 data "google_service_account" "service_account" {
-  provider     = google-beta
-  project      = data.google_project.default.project_id
-  account_id   = "provisioner"
+  provider   = google-beta
+  project    = data.google_project.default.project_id
+  account_id = "provisioner"
 }
 
 # Enable required services on the project
@@ -17,7 +17,7 @@ resource "google_project_service" "firebase_services" {
   project = var.project_id
   service = element(var.firebase_services, count.index)
 
-  disable_on_destroy = false
+  disable_on_destroy         = false
   disable_dependent_services = true
 }
 
@@ -30,8 +30,8 @@ resource "google_firebase_project" "default" {
 }
 
 resource "google_firebase_project_location" "basic" {
-  provider = google-beta
-  project = data.google_project.default.project_id
+  provider    = google-beta
+  project     = data.google_project.default.project_id
   location_id = var.region
 
   depends_on = [google_project_service.firebase_services]
@@ -39,8 +39,8 @@ resource "google_firebase_project_location" "basic" {
 
 # Configuring Firebase app
 resource "google_firebase_web_app" "basic" {
-  provider   = google-beta
-  project = data.google_project.default.project_id
+  provider     = google-beta
+  project      = data.google_project.default.project_id
   display_name = "${var.app_org_id}-${var.env}"
 
   depends_on = [

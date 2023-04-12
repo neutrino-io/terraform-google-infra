@@ -12,11 +12,11 @@ module "google-infra-gke" {
   enable_service_gke          = true
   enable_service_gke_operator = true
   enable_service_firebase     = false
-  service_gke_operators       = [
+  service_gke_operators = [
     {
-      name     = "traefik"
-      enabled  = true
-      version  = "10.23.0"
+      name    = "traefik"
+      enabled = true
+      version = "10.23.0"
       settings = {
         "additionalArguments"             = "{--entryPoints.kafka-broker.address=:19091/tcp}"
         "ports.kafka-broker2.expose"      = "true"
@@ -31,10 +31,6 @@ module "google-infra-gke" {
     },
     {
       name    = "strimzi"
-      enabled = true
-    },
-    {
-      name    = "rook"
       enabled = true
     }
   ]
