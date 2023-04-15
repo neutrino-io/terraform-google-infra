@@ -1,9 +1,9 @@
 data "google_project" "default" {
 }
 
-data "google_client_openid_userinfo" "gcloud-user" {
-  provider = google-beta
-}
+#data "google_client_openid_userinfo" "gcloud-user" {
+#  provider = google-beta
+#}
 
 data "google_service_account" "service_account" {
   provider   = google-beta

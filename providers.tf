@@ -1,21 +1,3 @@
-terraform {
-  required_providers {
-    kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = "1.13.0"
-    }
-
-    null = {
-      version = "~> 3.1.0"
-    }
-
-    auth0 = {
-      source  = "alexkappa/auth0"
-      version = "0.26.2"
-    }
-  }
-}
-
 # GCP
 provider "google" {
   alias = "impersonated"
@@ -64,8 +46,8 @@ provider "helm" {
   kubernetes {
     host                   = var.enable_service_gke ? "https://${module.service_gke[0].endpoint}" : ""
     token                  = data.google_client_config.current.access_token
-    client_certificate     = var.enable_service_gke ? base64decode(module.service_gke[0].master_auth.0.client_certificate) : ""
-    client_key             = var.enable_service_gke ? base64decode(module.service_gke[0].master_auth.0.client_key) : ""
-    cluster_ca_certificate = var.enable_service_gke ? base64decode(module.service_gke[0].master_auth.0.cluster_ca_certificate) : ""
+    client_certificate     = var.enable_service_gke ? base64decode(module.service_gke[0].master_auth[0].client_certificate) : ""
+    client_key             = var.enable_service_gke ? base64decode(module.service_gke[0].master_auth[0].client_key) : ""
+    cluster_ca_certificate = var.enable_service_gke ? base64decode(module.service_gke[0].master_auth[0].cluster_ca_certificate) : ""
   }
 }

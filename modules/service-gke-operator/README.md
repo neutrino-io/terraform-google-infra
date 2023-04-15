@@ -45,12 +45,8 @@ No providers.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app_org_id"></a> [app\_org\_id](#input\_app\_org\_id) | Application organization ID | `any` | n/a | yes |
-| <a name="input_gke_cluster_ca"></a> [gke\_cluster\_ca](#input\_gke\_cluster\_ca) | GKE cluster CA | `any` | n/a | yes |
-| <a name="input_gke_endpoint"></a> [gke\_endpoint](#input\_gke\_endpoint) | GKE endpoint | `any` | n/a | yes |
-| <a name="input_gke_master_auth"></a> [gke\_master\_auth](#input\_gke\_master\_auth) | GKE master auth | `any` | n/a | yes |
-| <a name="input_gke_operators"></a> [gke\_operators](#input\_gke\_operators) | Enable operators and its setting | <pre>list(object({<br>    name      = string<br>    enabled   = bool<br>    version   = optional(string)<br>    namespace = optional(string)<br>    settings  = optional(map(string))<br>  }))</pre> | <pre>[<br>  {<br>    "enabled": true,<br>    "name": "traefik"<br>  }<br>]</pre> | no |
-| <a name="input_google_access_token"></a> [google\_access\_token](#input\_google\_access\_token) | Google access token | `any` | n/a | yes |
+| <a name="input_app_org_id"></a> [app\_org\_id](#input\_app\_org\_id) | Application organization ID | `string` | n/a | yes |
+| <a name="input_gke_operators"></a> [gke\_operators](#input\_gke\_operators) | Enable operators and their settings | <pre>list(object({<br>    name      = string<br>    enabled   = bool<br>    version   = optional(string)<br>    namespace = optional(string)<br>    settings  = optional(map(string))<br>  }))</pre> | <pre>[<br>  {<br>    "enabled": true,<br>    "name": "traefik"<br>  }<br>]</pre> | no |
 
 ## Outputs
 

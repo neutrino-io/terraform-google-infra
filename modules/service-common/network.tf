@@ -34,7 +34,7 @@ resource "google_compute_router_nat" "primary-router-nat" {
   name                               = format("%s", "${var.app_org_id}-router-nat-${var.env}")
   router                             = google_compute_router.primary_router.name
   nat_ip_allocate_option             = "MANUAL_ONLY"
-  nat_ips                            = google_compute_address.primary_address.*.self_link
+  nat_ips                            = google_compute_address.primary_address[*].self_link
   source_subnetwork_ip_ranges_to_nat = "LIST_OF_SUBNETWORKS"
 
   subnetwork {

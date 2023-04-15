@@ -14,24 +14,28 @@ module "google-infra-gke" {
   enable_service_firebase     = false
   service_gke_operators = [
     {
-      name    = "traefik"
+      name    = "traefik",
       enabled = true
-      version = "10.23.0"
-      settings = {
-        "additionalArguments"             = "{--entryPoints.kafka-broker.address=:19091/tcp}"
-        "ports.kafka-broker2.expose"      = "true"
-        "ports.kafka-broker2.port"        = "19092"
-        "ports.kafka-broker2.exposedPort" = "19092"
-        "ports.kafka-broker2.protocol"    = "TCP"
-        "ports.kafka-broker3.expose"      = "true"
-        "ports.kafka-broker3.port"        = "19093"
-        "ports.kafka-broker3.exposedPort" = "19093"
-        "ports.kafka-broker3.protocol"    = "TCP"
-      }
     },
     {
-      name    = "strimzi"
+      name    = "strimzi",
+      enabled = false
+    },
+    {
+      name    = "cloudnativepg",
+      enabled = false
+    },
+    {
+      name    = "rook",
       enabled = true
-    }
+    },
+    {
+      name    = "dapr",
+      enabled = false
+    },
+    {
+      name    = "flink",
+      enabled = true
+    },
   ]
 }

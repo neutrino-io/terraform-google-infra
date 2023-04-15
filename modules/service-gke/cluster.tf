@@ -1,5 +1,7 @@
 module "clusters" {
-  source                            = "terraform-google-modules/kubernetes-engine/google//modules/private-cluster"
+  source  = "terraform-google-modules/kubernetes-engine/google//modules/private-cluster"
+  version = "~> 25.0"
+
   project_id                        = var.project_id
   name                              = "${var.org_id}-cluster-core-${var.env}"
   region                            = var.region

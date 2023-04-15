@@ -6,7 +6,7 @@ locals {
 module "operator-traefik" {
   count = local.operator_traefik_enabled ? 1 : 0
 
-  source             = "./operator-traefik"
+  source             = "./modules/operator-traefik"
   app_org_id         = var.app_org_id
   operator_version   = local.operator_traefik[0]["version"]
   operator_namespace = local.operator_traefik[0]["namespace"]
@@ -22,7 +22,7 @@ locals {
 module "operator-strimzi" {
   count = local.operator_strimzi_enabled ? 1 : 0
 
-  source             = "./operator-strimzi"
+  source             = "./modules/operator-strimzi"
   app_org_id         = var.app_org_id
   operator_version   = local.operator_strimzi[0]["version"]
   operator_namespace = local.operator_strimzi[0]["namespace"]
@@ -37,7 +37,7 @@ locals {
 module "operator-cloudnativepg" {
   count = local.operator_cloudnativepg_enabled ? 1 : 0
 
-  source             = "./operator-cloudnativepg"
+  source             = "./modules/operator-cloudnativepg"
   app_org_id         = var.app_org_id
   operator_version   = local.operator_cloudnativepg[0]["version"]
   operator_namespace = local.operator_cloudnativepg[0]["namespace"]
@@ -52,7 +52,7 @@ locals {
 module "operator-rook" {
   count = local.operator_rook_enabled ? 1 : 0
 
-  source             = "./operator-rook"
+  source             = "./modules/operator-rook"
   app_org_id         = var.app_org_id
   operator_version   = local.operator_rook[0]["version"]
   operator_namespace = local.operator_rook[0]["namespace"]
@@ -68,7 +68,7 @@ locals {
 module "operator-flink" {
   count = local.operator_flink_enabled ? 1 : 0
 
-  source             = "./operator-flink"
+  source             = "./modules/operator-flink"
   app_org_id         = var.app_org_id
   operator_version   = local.operator_flink[0]["version"]
   operator_namespace = local.operator_flink[0]["namespace"]
@@ -83,9 +83,25 @@ locals {
 module "operator-dapr" {
   count = local.operator_dapr_enabled ? 1 : 0
 
-  source             = "./operator-dapr"
+  source             = "./modules/operator-dapr"
   app_org_id         = var.app_org_id
   operator_version   = local.operator_dapr[0]["version"]
   operator_namespace = local.operator_dapr[0]["namespace"]
   operator_settings  = local.operator_dapr[0]["settings"]
+}
+
+// Operator OpenFunction
+locals {
+  operator_openfunction         = [for operator in var.gke_operators : operator if operator.name == "openfunction"]
+  operator_openfunction_enabled = length(local.operator_openfunction) > 0 ? local.operator_openfunction[0]["enabled"] : false
+}
+
+module "operator-openfunction" {
+  count = local.operator_openfunction_enabled ? 1 : 0
+
+  source             = "./modules/operator-openfunction"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_openfunction[0]["version"]
+  operator_namespace = local.operator_openfunction[0]["namespace"]
+  operator_settings  = local.operator_openfunction[0]["settings"]
 }

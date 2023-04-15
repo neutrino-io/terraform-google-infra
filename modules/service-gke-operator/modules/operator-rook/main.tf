@@ -1,7 +1,7 @@
 locals {
   name               = "rook"
-  operator_version   = tostring(var.operator_version) != "" ? var.operator_version : "v1.11.3"
-  operator_namespace = tostring(var.operator_namespace) != "" ? var.operator_namespace : "neutrino-rook"
+  operator_version   = tostring(var.operator_version) != null ? var.operator_version : "v1.11.3"
+  operator_namespace = tostring(var.operator_namespace) != null ? var.operator_namespace : "neutrino-rook"
 }
 
 resource "kubernetes_namespace" "system_rook" {

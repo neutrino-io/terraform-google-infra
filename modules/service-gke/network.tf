@@ -35,7 +35,7 @@ resource "google_compute_router_nat" "cluster_core_router_nat" {
   name                               = format("%s", "${var.org_id}-cluster-core-router-nat-${var.env}")
   router                             = google_compute_router.cluster_core_router.name
   nat_ip_allocate_option             = "MANUAL_ONLY"
-  nat_ips                            = google_compute_address.cluster_core_address.*.self_link
+  nat_ips                            = google_compute_address.cluster_core_address[*].self_link
   source_subnetwork_ip_ranges_to_nat = "LIST_OF_SUBNETWORKS"
 
   subnetwork {
