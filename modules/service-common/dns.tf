@@ -3,6 +3,12 @@ resource "google_dns_managed_zone" "sub_domain_env" {
   dns_name    = "${var.env}.${var.app_domain}."
   description = "${var.app_org_id} zone - ${var.env}"
 
+  dnssec_config {
+    kind          = "dns#managedZoneDnsSecConfig"
+    non_existence = "nsec3"
+    state         = "on"
+  }
+
   depends_on = [
     google_project_service.service
   ]

@@ -1,17 +1,18 @@
-resource "google_project_iam_member" "grant-token-iam" {
-  project = var.project_id
-  role    = "roles/iam.serviceAccountTokenCreator"
-  member  = "serviceAccount:${data.google_service_account.service_account.email}"
+resource "google_service_account_iam_member" "grant-token-iam" {
+  service_account_id = data.google_service_account.service_account.name
+  role               = "roles/iam.serviceAccountTokenCreator"
+  member             = "gcp-devops@${var.app_domain}"
 
   depends_on = [
     google_project_service.firebase_services
   ]
+
 }
 
-resource "google_project_iam_member" "firebase_update" {
-  project = var.project_id
-  role    = "roles/firebase.admin"
-  member  = "serviceAccount:${data.google_service_account.service_account.email}"
+resource "google_service_account_iam_member" "firebase_update" {
+  service_account_id = data.google_service_account.service_account.name
+  role               = "roles/firebase.admin"
+  member             = "gcp-devops@${var.app_domain}"
 
   depends_on = [
     google_project_service.firebase_services

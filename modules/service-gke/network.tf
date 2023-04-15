@@ -1,4 +1,6 @@
 resource "google_compute_subnetwork" "cluster_core_subnet" {
+  #bridgecrew:skip=CKV_GCP_26
+  #bridgecrew:skip=CKV_GCP_76: This is private subnet
   name          = format("%s", "${var.org_id}-${var.region}-cluster-core-${var.env}")
   network       = var.vpc.self_link
   region        = var.region

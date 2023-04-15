@@ -3,6 +3,11 @@ variable "app_org_id" {
   type        = string
 }
 
+variable "app_domain" {
+  description = "Domain name"
+  type        = string
+}
+
 variable "project_id" {
   description = "GCP project ID"
   type        = string

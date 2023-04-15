@@ -42,6 +42,7 @@ module "service_firebase" {
 
   source     = "./modules/service-firebase"
   app_org_id = var.app_org_id
+  app_domain = var.app_domain
   env        = var.env
   project_id = var.project_id
   region     = var.region

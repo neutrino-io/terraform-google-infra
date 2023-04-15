@@ -4,7 +4,7 @@ resource "google_kms_crypto_key" "kubernetes-secrets" {
   rotation_period = "604800s"
 
   lifecycle {
-    prevent_destroy = false
+    prevent_destroy = true
   }
 }
 

@@ -1,4 +1,6 @@
 resource "google_compute_subnetwork" "primary_subnet_private" {
+  #bridgecrew:skip=CKV_GCP_26
+  #bridgecrew:skip=CKV_GCP_76: This is private subnet
   name          = format("%s", "${var.app_org_id}-${var.region}-private-net-${var.env}")
   network       = google_compute_network.vpc.self_link
   region        = var.region
@@ -8,6 +10,9 @@ resource "google_compute_subnetwork" "primary_subnet_private" {
 }
 
 resource "google_compute_subnetwork" "primary_subnet_public" {
+  #bridgecrew:skip=CKV_GCP_26
+  #bridgecrew:skip=CKV_GCP_76: This is public subnet
+  #bridgecrew:skip=CKV_GCP_74: This is public subnet
   name          = format("%s", "${var.app_org_id}-${var.region}-public-net-${var.env}")
   network       = google_compute_network.vpc.self_link
   region        = var.region
