@@ -1,13 +1,13 @@
-module "clusters" {
+module "cluster-control-private" {
   source  = "terraform-google-modules/kubernetes-engine/google//modules/private-cluster"
   version = "~> 25.0"
 
   project_id                        = var.project_id
-  name                              = "${var.org_id}-cluster-core-${var.env}"
+  name                              = local.cluster_control_name
   region                            = var.region
   zones                             = ["${var.region}-a", "${var.region}-b"]
   network                           = var.vpc.name
-  subnetwork                        = google_compute_subnetwork.cluster_core_subnet.name
+  subnetwork                        = google_compute_subnetwork.cluster-control.name
   ip_range_pods                     = "services-range"
   ip_range_services                 = "pods-range"
   http_load_balancing               = false
@@ -23,7 +23,7 @@ module "clusters" {
   add_master_webhook_firewall_rules = true
   database_encryption = [{
     state    = "ENCRYPTED"
-    key_name = google_kms_crypto_key.kubernetes-secrets.id
+    key_name = local.kms_key_name
   }]
 
   master_authorized_networks = [
@@ -41,7 +41,7 @@ module "clusters" {
 
   node_pools = [
     {
-      name               = "control-pool"
+      name               = "${local.cluster_control_key}-pool-${var.region}"
       machine_type       = "e2-medium"
       node_locations     = "${var.region}-a,${var.region}-b"
       min_count          = 1
@@ -55,7 +55,7 @@ module "clusters" {
       enable_gvnic       = false
       auto_repair        = true
       auto_upgrade       = true
-      service_account    = google_service_account.cluster_core.email
+      service_account    = google_service_account.cluster-control.email
       preemptible        = false
       initial_node_count = 1
     },
@@ -75,11 +75,4 @@ module "clusters" {
       disable-legacy-endpoints         = "true"
     }
   }
-}
-
-
-data "google_container_cluster" "gke_cluster" {
-  name     = module.clusters.name
-  location = module.clusters.location
-  project  = var.project_id
 }

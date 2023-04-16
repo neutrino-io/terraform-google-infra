@@ -1,11 +1,14 @@
 resource "google_artifact_registry_repository" "general_repo" {
+  provider = google-beta
+
   location      = var.region
   repository_id = var.org_id
   description   = "${var.org_id} repository"
-  format        = "DOCKER"
-  kms_key_name  = google_kms_crypto_key.kubernetes-secrets.name
+  format        = "docker"
+  kms_key_name  = local.kms_key_name
 
   depends_on = [
-    google_project_service.gke_service
+    google_project_service.gke_service,
+    google_kms_crypto_key_iam_binding.kubernetes-secrets
   ]
 }
