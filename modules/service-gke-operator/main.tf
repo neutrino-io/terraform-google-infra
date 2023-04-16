@@ -90,6 +90,21 @@ module "operator-dapr" {
   operator_settings  = local.operator_dapr[0]["settings"]
 }
 
+// Operator Prometheus
+locals {
+  operator_prometheus         = [for operator in var.gke_operators : operator if operator.name == "prometheus"]
+  operator_prometheus_enabled = length(local.operator_prometheus) > 0 ? local.operator_prometheus[0]["enabled"] : false
+}
+module "operator-prometheus" {
+  count = local.operator_prometheus_enabled ? 1 : 0
+
+  source             = "./modules/operator-prometheus"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_prometheus[0]["version"]
+  operator_namespace = local.operator_prometheus[0]["namespace"]
+  operator_settings  = local.operator_prometheus[0]["settings"]
+}
+
 // Operator OpenFunction
 locals {
   operator_openfunction         = [for operator in var.gke_operators : operator if operator.name == "openfunction"]

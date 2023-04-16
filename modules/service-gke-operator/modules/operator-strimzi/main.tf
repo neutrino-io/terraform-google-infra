@@ -51,7 +51,7 @@ resource "helm_release" "strimzi_registry_operator" {
 
   set {
     name  = "clusterName"
-    value = "cluster-core-kafka"
+    value = "control-kafka"
   }
 
   set {
