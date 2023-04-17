@@ -105,6 +105,21 @@ module "operator-prometheus" {
   operator_settings  = local.operator_prometheus[0]["settings"]
 }
 
+// Operator Contour
+locals {
+  operator_contour         = [for operator in var.gke_operators : operator if operator.name == "contour"]
+  operator_contour_enabled = length(local.operator_contour) > 0 ? local.operator_contour[0]["enabled"] : false
+}
+module "operator-contour" {
+  count = local.operator_contour_enabled ? 1 : 0
+
+  source             = "./modules/operator-contour"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_contour[0]["version"]
+  operator_namespace = local.operator_contour[0]["namespace"]
+  operator_settings  = local.operator_contour[0]["settings"]
+}
+
 // Operator OpenFunction
 locals {
   operator_openfunction         = [for operator in var.gke_operators : operator if operator.name == "openfunction"]
