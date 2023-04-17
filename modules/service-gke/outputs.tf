@@ -5,7 +5,7 @@ data "google_container_cluster" "gke_cluster" {
 }
 
 output "cluster_core_address" {
-  value = google_compute_address.cluster-control-address
+  value       = google_compute_address.cluster-control-address
   description = "Cluster control address"
 }
 
@@ -28,6 +28,6 @@ output "master_auth" {
 }
 
 output "gke_service" {
-  value = google_project_service.gke_service
+  value       = google_project_service.gke_service
   description = "GKE related services"
 }

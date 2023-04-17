@@ -43,9 +43,9 @@
 
 | Name | Description |
 |------|-------------|
-| <a name="output_kms_key_ring_common"></a> [kms\_key\_ring\_common](#output\_kms\_key\_ring\_common) | n/a |
-| <a name="output_service"></a> [service](#output\_service) | n/a |
-| <a name="output_vpc"></a> [vpc](#output\_vpc) | n/a |
+| <a name="output_kms_key_ring_common"></a> [kms\_key\_ring\_common](#output\_kms\_key\_ring\_common) | KMS Key Ring Common |
+| <a name="output_service"></a> [service](#output\_service) | Project Services |
+| <a name="output_vpc"></a> [vpc](#output\_vpc) | Project VPC |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## What's a Module?

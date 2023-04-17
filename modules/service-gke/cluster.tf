@@ -75,4 +75,8 @@ module "cluster-control-private" {
       disable-legacy-endpoints         = "true"
     }
   }
+
+  depends_on = [
+    google_kms_crypto_key_iam_binding.kubernetes-secrets
+  ]
 }

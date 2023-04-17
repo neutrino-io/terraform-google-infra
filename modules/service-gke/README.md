@@ -33,9 +33,9 @@
 | Name | Description |
 |------|-------------|
 | <a name="output_ca_certificate"></a> [ca\_certificate](#output\_ca\_certificate) | Cluster ca certificate (base64 encoded) |
-| <a name="output_cluster_core_address"></a> [cluster\_core\_address](#output\_cluster\_core\_address) | n/a |
+| <a name="output_cluster_core_address"></a> [cluster\_core\_address](#output\_cluster\_core\_address) | Cluster control address |
 | <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | Cluster endpoint |
-| <a name="output_gke_service"></a> [gke\_service](#output\_gke\_service) | n/a |
+| <a name="output_gke_service"></a> [gke\_service](#output\_gke\_service) | GKE related services |
 | <a name="output_master_auth"></a> [master\_auth](#output\_master\_auth) | Cluster master auth |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
