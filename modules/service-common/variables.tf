@@ -18,10 +18,25 @@ variable "env" {
   type        = string
 }
 
+#
+# DNS
+# ------------------------------
 variable "app_domain" {
   description = "Application domain"
   type        = string
 }
+
+#variable "enable_domain_service" {
+#    description = "Enable subdomain for service"
+#    type        = bool
+#    default     = false
+#}
+#
+#variable "enable_domain_app" {
+#    description = "Enable subdomain for app"
+#    type        = bool
+#    default     = false
+#}
 
 #
 # OAuth

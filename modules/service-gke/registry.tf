@@ -8,7 +8,6 @@ resource "google_artifact_registry_repository" "general_repo" {
   kms_key_name  = local.kms_key_name
 
   depends_on = [
-    google_project_service.gke_service,
-    google_kms_crypto_key_iam_binding.kubernetes-secrets
+    google_project_service.gke_service
   ]
 }
