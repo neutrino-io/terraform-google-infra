@@ -1,6 +1,6 @@
 locals {
   name               = "contour"
-  operator_version   = tostring(var.operator_version) != null ? var.operator_version : "1.24"
+  operator_version   = tostring(var.operator_version) != null ? var.operator_version : "11.1.2"
   operator_namespace = tostring(var.operator_namespace) != null ? var.operator_namespace : "neutrino-contour"
 }
 
