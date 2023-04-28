@@ -1,3 +1,9 @@
+variable "project_id" {
+  type        = string
+  description = "Project ID"
+  default     = ""
+}
+
 variable "app_org_id" {
   type        = string
   description = "Application organization ID"

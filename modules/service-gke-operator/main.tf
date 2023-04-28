@@ -1,3 +1,11 @@
+// Default current project
+data "google_client_config" "default" {}
+
+locals {
+  current_project = var.project_id != "" ? var.project_id : data.google_client_config.default.project
+}
+
+
 // Operator Traefik
 locals {
   operator_traefik         = [for operator in var.gke_operators : operator if operator.name == "traefik"]
@@ -13,6 +21,20 @@ module "operator-traefik" {
   operator_settings  = local.operator_traefik[0]["settings"]
 }
 
+// Operator Contour
+locals {
+  operator_contour         = [for operator in var.gke_operators : operator if operator.name == "contour"]
+  operator_contour_enabled = length(local.operator_contour) > 0 ? local.operator_contour[0]["enabled"] : false
+}
+module "operator-contour" {
+  count = local.operator_contour_enabled ? 1 : 0
+
+  source             = "./modules/operator-contour"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_contour[0]["version"]
+  operator_namespace = local.operator_contour[0]["namespace"]
+  operator_settings  = local.operator_contour[0]["settings"]
+}
 
 // Operator Strimzi
 locals {
@@ -105,21 +127,6 @@ module "operator-prometheus" {
   operator_settings  = local.operator_prometheus[0]["settings"]
 }
 
-// Operator Contour
-locals {
-  operator_contour         = [for operator in var.gke_operators : operator if operator.name == "contour"]
-  operator_contour_enabled = length(local.operator_contour) > 0 ? local.operator_contour[0]["enabled"] : false
-}
-module "operator-contour" {
-  count = local.operator_contour_enabled ? 1 : 0
-
-  source             = "./modules/operator-contour"
-  app_org_id         = var.app_org_id
-  operator_version   = local.operator_contour[0]["version"]
-  operator_namespace = local.operator_contour[0]["namespace"]
-  operator_settings  = local.operator_contour[0]["settings"]
-}
-
 // Operator OpenFunction
 locals {
   operator_openfunction         = [for operator in var.gke_operators : operator if operator.name == "openfunction"]
@@ -134,4 +141,21 @@ module "operator-openfunction" {
   operator_version   = local.operator_openfunction[0]["version"]
   operator_namespace = local.operator_openfunction[0]["namespace"]
   operator_settings  = local.operator_openfunction[0]["settings"]
+}
+
+// Operator Camel-K
+locals {
+  operator_camel-k         = [for operator in var.gke_operators : operator if operator.name == "camel-k"]
+  operator_camel-k_enabled = length(local.operator_camel-k) > 0 ? local.operator_camel-k[0]["enabled"] : false
+}
+
+module "operator-camel_k" {
+  count = local.operator_camel-k_enabled ? 1 : 0
+
+  source             = "./modules/operator-camel_k"
+  project_id         = local.current_project
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_camel-k[0]["version"]
+  operator_namespace = local.operator_camel-k[0]["namespace"]
+  operator_settings  = local.operator_camel-k[0]["settings"]
 }

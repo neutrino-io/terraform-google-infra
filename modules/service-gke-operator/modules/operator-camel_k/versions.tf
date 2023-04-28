@@ -22,12 +22,5 @@ terraform {
       source  = "gavinbunney/kubectl"
       version = "1.14.0"
     }
-    null = {
-      version = "~> 3.1.0"
-    }
-  }
-
-  provider_meta "google" {
-    module_name = "blueprints/terraform/exported-krm/v0.1.0"
   }
 }

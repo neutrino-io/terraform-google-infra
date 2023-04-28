@@ -39,7 +39,9 @@ module "gke-operator" {
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_google"></a> [google](#provider\_google) | 4.63.1 |
 
 ## Inputs
 
@@ -47,6 +49,7 @@ No providers.
 |------|-------------|------|---------|:--------:|
 | <a name="input_app_org_id"></a> [app\_org\_id](#input\_app\_org\_id) | Application organization ID | `string` | n/a | yes |
 | <a name="input_gke_operators"></a> [gke\_operators](#input\_gke\_operators) | Enable operators and their settings | <pre>list(object({<br>    name      = string<br>    enabled   = bool<br>    version   = optional(string)<br>    namespace = optional(string)<br>    settings  = optional(map(string))<br>  }))</pre> | <pre>[<br>  {<br>    "enabled": true,<br>    "name": "traefik"<br>  }<br>]</pre> | no |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | Project ID | `string` | `""` | no |
 
 ## Outputs
 
