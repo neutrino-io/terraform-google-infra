@@ -6,7 +6,7 @@ resource "kubectl_manifest" "cluster_issuer" {
       name: dns-clusterissuer
     spec:
       acme:
-        email: admin@foundry360.io
+        email: ${var.support_email}
         server: https://acme-staging-v02.api.letsencrypt.org/directory
         privateKeySecretRef:
           name: dns-clusterissuer-account-key
