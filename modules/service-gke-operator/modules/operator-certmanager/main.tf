@@ -20,7 +20,7 @@ resource "helm_release" "cert_manager" {
   namespace  = "system-certmanager"
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
-  version    = "1.11.0"
+  version    = local.name
 
 dynamic "set" {
     for_each = var.operator_settings == null ? {} : var.operator_settings

@@ -25,3 +25,15 @@ variable "operator_settings" {
   type        = map(string)
   default     = {}
 }
+
+variable "support_email" {
+  description = "Email Support"
+  
+}
+variable "sa_iam_roles_dnsadmin" {
+  type = list(string)
+  default = [
+    "roles/dns.admin"
+  ]
+  description = "List of IAM roles to assign to the DNS admin service account."
+}
