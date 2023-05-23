@@ -1,6 +1,6 @@
 locals {
   name               = "otel"
-  operator_version   = var.operator_version == null ? "45.10.0" : var.operator_version
+  operator_version   = var.operator_version == null ? "0.27.0" : var.operator_version
   operator_namespace = var.operator_namespace == null ? "neutrino-otel" : var.operator_namespace
 }
 
@@ -18,8 +18,8 @@ resource "kubernetes_namespace" "system_otel" {
 resource "helm_release" "otel_operator" {
   name       = "${local.name}-operator"
   namespace  = local.operator_namespace
-  repository = "https://prometheus-community.github.io/helm-charts"
-  chart      = "kube-prometheus-stack"
+  repository = "https://open-telemetry.github.io/opentelemetry-helm-charts"
+  chart      = "opentelemetry-operator"
   version    = local.operator_version
 
   dynamic "set" {
