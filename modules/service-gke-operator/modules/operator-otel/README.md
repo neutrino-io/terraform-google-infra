@@ -1,4 +1,4 @@
-# Rook Operator
+# Opentelemetry Operator
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Providers
