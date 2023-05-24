@@ -28,8 +28,10 @@ variable "operator_settings" {
 
 variable "support_email" {
   description = "Email Support"
-  
+  type        = string
+  default     = ""
 }
+
 variable "sa_iam_roles_dnsadmin" {
   type = list(string)
   default = [

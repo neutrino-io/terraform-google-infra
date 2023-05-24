@@ -16,13 +16,18 @@ resource "kubernetes_namespace" "system_certmanager" {
 }
 
 resource "helm_release" "cert_manager" {
-  name       = "cert-manager"
-  namespace  = "system-certmanager"
+  name       = "${local.name}-operator"
+  namespace  = local.operator_namespace
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
-  version    = local.name
+  version    = local.operator_version
 
-dynamic "set" {
+  set {
+    name  = "InstallCRDs"
+    value = true
+  }
+
+  dynamic "set" {
     for_each = var.operator_settings == null ? {} : var.operator_settings
 
     content {
@@ -36,7 +41,3 @@ dynamic "set" {
   ]
 }
 
-set {
-    name    = InstallCRDs
-    value   = true
-}

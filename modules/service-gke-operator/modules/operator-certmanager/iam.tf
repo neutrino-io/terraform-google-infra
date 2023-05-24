@@ -10,7 +10,7 @@ resource "google_project_iam_binding" "dns_admin_binding" {
   project = var.project_id
   count   = length(var.sa_iam_roles_dnsadmin)
   role    = element(var.sa_iam_roles_dnsadmin, count.index)
-  members  = [
+  members = [
     "serviceAccount:${google_service_account.dns_admin.email}"
   ]
 
@@ -21,7 +21,7 @@ resource "google_project_iam_binding" "dns_admin_binding" {
 
 resource "google_service_account_iam_binding" "dns_admin_workload_identity" {
   service_account_id = google_service_account.dns_admin.name
-  role = "roles/iam.workloadIdentityUser"
+  role               = "roles/iam.workloadIdentityUser"
   members = [
     "serviceAccount:${var.project_id}.svc.id.goog[system-certmanager/cert-manager]"
   ]

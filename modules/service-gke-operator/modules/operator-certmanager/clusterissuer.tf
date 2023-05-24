@@ -17,7 +17,4 @@ resource "kubectl_manifest" "cluster_issuer" {
 
   EOF
 
-  depends_on = [
-    data.kubernetes_service_account.service_account_dns_admin
-  ]
 }
