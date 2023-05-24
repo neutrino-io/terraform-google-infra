@@ -159,3 +159,18 @@ module "operator-camel_k" {
   operator_namespace = local.operator_camel-k[0]["namespace"]
   operator_settings  = local.operator_camel-k[0]["settings"]
 }
+
+// Operator Keda
+locals {
+  operator_keda         = [for operator in var.gke_operators : operator if operator.name == "keda"]
+  operator_keda_enabled = length(local.operator_keda) > 0 ? local.operator_keda[0]["enabled"] : false
+}
+module "operator-keda" {
+  count = local.operator_keda_enabled ? 1 : 0
+
+  source             = "./modules/operator-keda"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_keda[0]["version"]
+  operator_namespace = local.operator_keda[0]["namespace"]
+  operator_settings  = local.operator_keda[0]["settings"]
+}
