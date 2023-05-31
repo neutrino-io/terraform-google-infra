@@ -174,3 +174,18 @@ module "operator-keda" {
   operator_namespace = local.operator_keda[0]["namespace"]
   operator_settings  = local.operator_keda[0]["settings"]
 }
+
+// Operator certmanager
+locals {
+  operator_keda         = [for operator in var.gke_operators : operator if operator.name == "keda"]
+  operator_keda_enabled = length(local.operator_keda) > 0 ? local.operator_keda[0]["enabled"] : false
+}
+module "operator-certmanager" {
+  count = local.operator_certmanager_enabled ? 1 : 0
+
+  source             = "./modules/operator-cert-manage"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_certmanager[0]["version"]
+  operator_namespace = local.operator_certmanager[0]["namespace"]
+  operator_settings  = local.operator_certmanager[0]["settings"]
+}
