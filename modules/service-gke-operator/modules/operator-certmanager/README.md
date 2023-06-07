@@ -1,4 +1,4 @@
-# operator-certmanager
+# Certmanager Operator
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Providers
