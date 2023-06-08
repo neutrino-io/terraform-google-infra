@@ -6,6 +6,7 @@ variable "app_org_id" {
 variable "project_id" {
   description = "GCP project ID"
   type        = string
+  default     = ""
 }
 
 variable "operator_version" {

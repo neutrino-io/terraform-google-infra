@@ -18,7 +18,7 @@
 | <a name="input_operator_namespace"></a> [operator\_namespace](#input\_operator\_namespace) | Operator namespace | `string` | `""` | no |
 | <a name="input_operator_settings"></a> [operator\_settings](#input\_operator\_settings) | Operator settings | `map(string)` | `{}` | no |
 | <a name="input_operator_version"></a> [operator\_version](#input\_operator\_version) | Operator version | `string` | `""` | no |
-| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | `""` | no |
 | <a name="input_sa_iam_roles_dnsadmin"></a> [sa\_iam\_roles\_dnsadmin](#input\_sa\_iam\_roles\_dnsadmin) | List of IAM roles to assign to the DNS admin service account. | `list(string)` | <pre>[<br>  "roles/dns.admin"<br>]</pre> | no |
 | <a name="input_support_email"></a> [support\_email](#input\_support\_email) | Email Support | `string` | `""` | no |
 
