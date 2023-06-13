@@ -19,6 +19,7 @@ module "google-infra-gke" {
       version = "10.23.0"
       settings = {
         "additionalArguments"             = "{--entryPoints.kafka-broker.address=:19091/tcp}"
+        "additionalArguments"             = "{--entryPoints.postgres.address=:5432/tcp}"
         "ports.kafka-broker2.expose"      = "true"
         "ports.kafka-broker2.port"        = "19092"
         "ports.kafka-broker2.exposedPort" = "19092"
