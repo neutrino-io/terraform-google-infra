@@ -5,8 +5,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.66.0 |
-| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 4.66.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.62.0 |
+| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 4.62.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.9.0 |
 | <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | 1.14.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.19.0 |

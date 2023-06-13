@@ -40,4 +40,3 @@ resource "helm_release" "cert_manager" {
     kubernetes_namespace.system_certmanager
   ]
 }
-

@@ -20,7 +20,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google.impersonated"></a> [google.impersonated](#provider\_google.impersonated) | 4.63.1 |
+| <a name="provider_google.impersonated"></a> [google.impersonated](#provider\_google.impersonated) | 4.69.1 |
 
 ## Inputs
 

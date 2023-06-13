@@ -7,8 +7,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.66.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.61.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.5.0 |
 
 ## Inputs
 
