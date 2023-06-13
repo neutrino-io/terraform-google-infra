@@ -160,6 +160,22 @@ module "operator-camel_k" {
   operator_settings  = local.operator_camel-k[0]["settings"]
 }
 
+
+// Operator Opentelemetry
+locals {
+  operator_otel         = [for operator in var.gke_operators : operator if operator.name == "otel"]
+  operator_otel_enabled = length(local.operator_otel) > 0 ? local.operator_otel[0]["enabled"] : false
+}
+module "operator-otel" {
+  count = local.operator_otel_enabled ? 1 : 0
+
+  source             = "./modules/operator-otel"
+  app_org_id         = var.app_org_id
+  operator_version   = local.operator_otel[0]["version"]
+  operator_namespace = local.operator_otel[0]["namespace"]
+  operator_settings  = local.operator_otel[0]["settings"]
+}
+
 // Operator Keda
 locals {
   operator_keda         = [for operator in var.gke_operators : operator if operator.name == "keda"]
