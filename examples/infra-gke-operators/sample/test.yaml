@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camel-k-operator
+  namespace: neutrino-camel-k
+spec:
+  selector:
+    matchLabels:
+      name: camel-k-operator
+  template:
+    spec:
+      containers:
+      - name: camel-k-operator
+        env:
+        - name: WATCH_NAMESPACE
+          value: ''
